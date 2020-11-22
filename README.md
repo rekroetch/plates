@@ -2,7 +2,7 @@
 Group 10: Rachel Kroetch, Uyen Nguyen, Tria Thao
 
 ## Project Description
-An app that allows the user to search for restaurants when they want to try some place new.  The app will use the APIs of Zomato and OpenStreetMap, along with Leaflet and MapQuest to provide information about the restaurants as well as directions to the place of their choice. 
+An app that allows the user to search for restaurants when they want to try some place new.  The app uses the APIs of Zomato and OpenStreetMap, along with Leaflet and MapQuest to provide information about the restaurants as well as directions to the place of their choice. App utilizes HTML, CSS, JavaScript, jQuery, and Foundation.
 
 ## User Story
 AS A food enthusiast
@@ -18,19 +18,22 @@ SO THAT I can try new food in my area
 - then the user will see the address, rating, and phone number of each
 - when user clicks a restaurant, 
 - then given link to menu
-- when user clicks "get directions", 
+- when user clicks "Get direction", 
 - then given directions to the restaurant
 - when user refreshes page,
 - then the previous search results stay
 
-## Image
+## API's
+Zomato, OpenStreetMap, & MapQuest
+
+## Deployed Site Link
+https://rekroetch.github.io/whos_hungry_project01/
+
+## Images
 ![screenshot](./screenshots/openingPage.png)
 ![screenshot](./screenshots/searchResult.png)
 ![screenshot](./screenshots/directions.png)
 ![screenshot](./screenshots/refreshedPage.png)
-
-## API's
-Zomato, OpenStreetMap, & MapQuest
 
 ## Breakdown of Tasks
 - front end design using new css framework, Foundation
