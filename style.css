@@ -1,30 +1,46 @@
 header {
     padding: 20px;
-    
-    background: rgb(255, 238, 109);
+    background-color: rgb(255, 185, 106);
     font-size: 40px;
+    border-bottom-style: ridge;
+    border-bottom-width: 1rem;
 }
 
 #title {
-    display: relative;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 80px;
+    color: rgb(47, 81, 121);
+    margin: 20px;
+    padding-left: 10px;
+    /* display: relative;
     float: left;
-    width: 500px;
+    width: 500px; */
 }
 
 .map-container {
     padding: 20px;
 }
 
+/* @media (min-width: 500px) {
+    #map {
+
+    }
+} */
+
 #map {
     position: relative;
-    width: 95%;
+    /* width: 95%; */
     height: 500px;
     align-content: center; 
     margin: 40px 25px;
+    border: 1px solid rgb(47, 81, 121);
+    
 }
 
 main {
-    background: rgb(91, 204, 91);
+    background-image: url("./images/angele-kamp-NK19f93xX88-unsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 input.cityInput {
@@ -35,8 +51,9 @@ input.cuisineInput {
     border-radius: 15px;
 }
 
-button.button.search.Btn {
-    border-radius: 15px;
+button.button.searchBtn {
+    border-radius: 20px;
+    background-color:  rgb(47, 81, 121)
 }
 
 .restName {
@@ -53,24 +70,24 @@ button.button.search.Btn {
     height: 10%;
     border-radius: 20px;
     padding: 20px;
+    border: 1px solid rgb(47, 81, 121);
 }
 
 .restaurant:hover {
-    border: solid red;
+    border: 2px solid  rgb(47, 81, 121);
 }
 
 .top5picks {
-    color: crimson;
+    color:  rgb(47, 81, 121);
     font-size: 20px;
     font-weight: bolder;
     text-align: center;
     margin: 20px auto;
     width: 200px;
     height: 40px;
-    background: rgb(255, 238, 109);
+    background: rgb(255, 185, 106);
     border-radius: 10px;
-   
-
+    border: 1px solid rgb(47, 81, 121);
 }
 
 .menu {
@@ -81,6 +98,7 @@ button.button.search.Btn {
     height: 10%;
     border-radius: 20px;
     padding: 20px; 
+    border: 1px solid rgb(47, 81, 121);
 }
 
 .bubble-pastResults {
@@ -88,7 +106,7 @@ button.button.search.Btn {
 	background: white;
     border-radius: 2em; 
     border: 5px solid;
-    border-color: crimson;
+    border-color:  rgb(47, 81, 121);
     height: 300px;
     width: 550px;
     text-align: center;
@@ -98,8 +116,8 @@ button.button.search.Btn {
 
 .restName {
     font-size: 35px;
-    color: crimson;
-    font-family: fantasy;
+    color:  rgb(47, 81, 121);
+    font-family: 'Courier New', Courier, monospace;
 }
 
 p.bubble-pastResults:before {
@@ -127,7 +145,7 @@ p.bubble-pastResults:before {
 	border-left: 0; 
 	margin-left: -40px;
     margin-bottom: -80px;
-    border-color: crimson transparent transparent crimson;
+    border-color:  rgb(47, 81, 121) transparent transparent  rgb(47, 81, 121);
     /* z-index: -1;     */ 
 }
 
@@ -138,17 +156,18 @@ p.bubble-pastResults:before {
 }
 
 footer {
-    /* background-color: #99BC76; */
-    background-color: rgb(255, 238, 109);
-    height: 50px;
+    background-color: rgb(255, 185, 106);
+    /* height: 50px; */
     margin-bottom: 0px;
 }
 
 .contact {
-    padding: 13px;
+    padding: 15px;
+    font-size: 25px;
+    color: rgb(47, 81, 121);
 } 
 
-.email {
+/* .email {
     position: absolute;
 }
 
@@ -161,10 +180,10 @@ footer {
 .instagram {
     position: absolute;
     padding-left: 100px;
-}
+} */
 
-.clearfix::after {
+/* .clearfix::after {
     content: " ";
     display: block;
     clear: both;
-}
+} */
