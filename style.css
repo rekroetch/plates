@@ -12,24 +12,14 @@ header {
     color: rgb(47, 81, 121);
     margin: 20px;
     padding-left: 10px;
-    /* display: relative;
-    float: left;
-    width: 500px; */
 }
 
 .map-container {
     padding: 20px;
 }
 
-/* @media (min-width: 500px) {
-    #map {
-
-    }
-} */
-
 #map {
     position: relative;
-    /* width: 95%; */
     height: 500px;
     align-content: center; 
     margin: 40px 25px;
@@ -111,7 +101,7 @@ button.button.searchBtn {
     width: 550px;
     text-align: center;
     font-size: 30px;
-    font-family: fantasy;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .restName {
@@ -146,7 +136,6 @@ p.bubble-pastResults:before {
 	margin-left: -40px;
     margin-bottom: -80px;
     border-color:  rgb(47, 81, 121) transparent transparent  rgb(47, 81, 121);
-    /* z-index: -1;     */ 
 }
 
 .get-direction {
@@ -157,7 +146,6 @@ p.bubble-pastResults:before {
 
 footer {
     background-color: rgb(255, 185, 106);
-    /* height: 50px; */
     margin-bottom: 0px;
 }
 
@@ -166,24 +154,3 @@ footer {
     font-size: 25px;
     color: rgb(47, 81, 121);
 } 
-
-/* .email {
-    position: absolute;
-}
-
-.facebook {
-    position: absolute;
-    float: left;
-    padding-left: 50px;
-}
-
-.instagram {
-    position: absolute;
-    padding-left: 100px;
-} */
-
-/* .clearfix::after {
-    content: " ";
-    display: block;
-    clear: both;
-} */
