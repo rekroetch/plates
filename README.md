@@ -1,4 +1,4 @@
-# Title: Who's Hungry?
+# Plates.
 Group 10: Rachel Kroetch, Uyen Nguyen, Tria Thao
 
 ## Project Description
@@ -27,17 +27,10 @@ SO THAT I can try new food in my area
 Zomato, OpenStreetMap, & MapQuest
 
 ## Deployed Site Link
-https://rekroetch.github.io/whos_hungry_project01/
+https://rekroetch.github.io/plates/
 
 ## Images
 ![screenshot](./screenshots/openingPage.png)
 ![screenshot](./screenshots/searchResult.png)
 ![screenshot](./screenshots/directions.png)
-![screenshot](./screenshots/refreshedPage.png)
 
-## Breakdown of Tasks
-- front end design using new css framework, Foundation
-- get api keys
-- use local storage to hold past search
-- use ajax to call information from the APIs
-- display search results dynamically using JavaScript
