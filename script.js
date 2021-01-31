@@ -14,7 +14,7 @@ function init() {
     $('.top5picks').html("Previous Search")
 
     if (storedResults === null) {
-        var noResults = $('<p class="bubble-pastResults"><br><br>Never used <span class="restName">Who\'s Hungry </span>before? <br> Give it a try!</p>')
+        var noResults = $('<p class="bubble-pastResults"><br><br>Never used <span class="restName">Plates </span>before? <br> Give it a try!</p>')
         $('.results').append(noResults)
     } else {
         var joinedResults = storedResults.split(",").join("")
