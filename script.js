@@ -1,13 +1,9 @@
-// Google map API key
-// var APIKey = "AIzaSyC680UklKEr_A2g5vrcu9R1x1ziJir4GBU";
-
 // Restaurant addresses 
 var addressArray = [];
 
 var buttonToAddressMapping = {};
 
 var convertedCurrentAddressArray = [];
-console.log(convertedCurrentAddressArray);
 
 let storedResultsArray = []
 
@@ -19,7 +15,6 @@ function init() {
 
     if (storedResults === null) {
         var noResults = $('<p class="bubble-pastResults"><br><br>Never used <span class="restName">Who\'s Hungry </span>before? <br> Give it a try!</p>')
-        console.log(noResults)
         $('.results').append(noResults)
     } else {
         var joinedResults = storedResults.split(",").join("")
@@ -29,17 +24,9 @@ function init() {
 
 // Function to determine user current location
 navigator.geolocation.getCurrentPosition(function (currentPosition) {
-
-    console.log(currentPosition);
-
     var currentLat = currentPosition.coords.latitude;
-    console.log("user current lat " + currentLat);
-
     var currentLon = currentPosition.coords.longitude;
-    console.log("user current lon " + currentLon);
 
-    // var map = L.map("map").setView([0, 0], 1); (If want the map to be in full
-    // initMap(currentPosition.coords);
     var map = L.map('map', {
         center: [currentLat, currentLon],
         zoom: 11
@@ -63,11 +50,8 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
         url: queryMQURL,
         method: "GET"
     }).then(function (coordsToAddress) {
-        console.log(coordsToAddress);
-
         var convertedAddress = coordsToAddress.results[0].locations[0].street;
         convertedCurrentAddressArray.push(convertedAddress);
-        console.log(coordsToAddress.results[0].locations[0].street);
     });
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -86,7 +70,6 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
     // when search button is clicked
     $('.searchBtn').on('click', function (event) {
         event.preventDefault()
-        console.log(map)
 
         // This will clear the old markers and the new markers are added after the user search again (followed by the code down the for loop)
         if (markers.length) {
@@ -111,8 +94,6 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                 "user-key": zomatoAPI
             }
         }).then(function (cityResponse) {
-            console.log(cityResponse)
-            console.log(cityResponse.location_suggestions[0].id)
             var cityId = cityResponse.location_suggestions[0].id
 
             var cuisineUrl = "https://developers.zomato.com/api/v2.1/cuisines?city_id=" + cityId
@@ -125,12 +106,9 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                     "user-key": zomatoAPI
                 }
             }).then(function (cuisineResponse) {
-                console.log(cuisineResponse)
-
                 for (var i = 0; i < cuisineResponse.cuisines.length; i++) {
                     if (cuisineResponse.cuisines[i].cuisine.cuisine_name === capitalCuisineSearch) {
                         var cuisineId = cuisineResponse.cuisines[i].cuisine.cuisine_id
-                        console.log(cuisineId)
                     }
                 }
 
@@ -144,8 +122,6 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                         "user-key": zomatoAPI
                     }
                 }).then(function (searchResponse) {
-                    console.log(searchResponse)
-
                     $('.results').empty()
                     $('.top5picks').html("Top 5 Picks")
 
@@ -153,7 +129,6 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
 
                     // gets info from response to put on each card
                     for (var i = 0; i < searchResponse.restaurants.length; i++) {
-                        console.log(searchResponse.restaurants[i].restaurant.name)
                         restArray.push(searchResponse.restaurants[i])
 
                         var restName = "<div class='restName'>" + searchResponse.restaurants[i].restaurant.name + "</div>"
@@ -165,46 +140,31 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                         var getDirectionButton = $("<button class='get-direction'>");
                         getDirectionButton.text("Get direction");
                         getDirectionButton.css("textDecoration", "underline");
-                        // $(".get-direction").attr("href", "map.html");
                         getDirectionButton.attr("data-address", searchResponse.restaurants[i].restaurant.location.address);
 
                         // Assign id for each get direction button (direction-1 to direction-5)
                         var customID = "direction-" + String(i);
                         getDirectionButton.attr("id", customID);
-                        // Assign id for each get direction button (direction-1 to direction-5)
-                        // var i = 0;
-                        // $(".get-direction").each(function () {
-                        // $(this).attr("id", customID);
-                        // i++;
 
-                        console.log(this);
                         buttonToAddressMapping[customID] = searchResponse.restaurants[i].restaurant.location.address;
-                        console.log("KeyValue: " + JSON.stringify(buttonToAddressMapping));
 
                         // Make restaurant addresses global
                         addressArray.push(searchResponse.restaurants[i].restaurant.location.address);
 
-                        var eachresult = $('<div class="card restaurant">')
-                        eachresult.attr("data-restaurantName", searchResponse.restaurants[i].restaurant.name)
-                        $(eachresult).append(restName, restAddress, restRating, restPhone, getDirectionButton);
-                        $('.results').append(eachresult)
-
-                        console.log(restArray)
+                        var eachResult = $('<div class="card restaurant">')
+                        eachResult.attr("data-restaurantName", searchResponse.restaurants[i].restaurant.name)
+                        $(eachResult).append(restName, restAddress, restRating, restPhone, getDirectionButton);
+                        $('.results').append(eachResult)
 
                         storedResultsArray.push("<div class='card pastResults'>" + restName + restAddress + restRating + restPhone + '</div>')
                         localStorage.setItem('storedResults', storedResultsArray);
-
-                        // storedResultsArray.push(JSON.stringify(eachresult))
-                        // localStorage.setItem('storedResults', storedResultsArray)
 
                         // Map start here
                         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
                         // Restaurants' lat and lon
                         var restLat = searchResponse.restaurants[i].restaurant.location.latitude;
-                        console.log("restaurant lat " + restLat);
                         var restLon = searchResponse.restaurants[i].restaurant.location.longitude;
-                        console.log("restaurant lon " + restLon);
 
                         // Marker color is changed thanks to an open source project from https://awesomeopensource.com/project/pointhi/leaflet-color-markers
                         var redIcon = new L.Icon({
@@ -229,8 +189,6 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                     $(".get-direction").on("click", function (event) {
                         routeLayers = []
                         routeGroup.clearLayers()
-                        console.log("ButtonId is: " + this.id);
-                        console.log("Address is: " + buttonToAddressMapping[this.id]);
                         event.preventDefault();
                         var restaurantAddress = buttonToAddressMapping[this.id];
 
@@ -262,7 +220,6 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                             var end = restaurantAddress;
 
                             dir = MQ.routing.directions();
-                            // var latlng = L.latLng(currentLat, currentLon)
                             dir.route({
                                 locations: [
                                     start,
@@ -286,7 +243,6 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                                     });
 
                                     marker = L.marker(location.latLng, { icon: custom_icon })
-                                        // .bindPopup()
                                         .openPopup()
                                         .addTo(map);
 
@@ -301,7 +257,6 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                                     ribbonDisplay: { color: '#0085CC' },
                                 }
                             })
-                            // map.addLayer(routeLayer);
                             routeLayers.push(routeLayer);
                             routeGroup.addLayer(routeLayer).addTo(map)
                         }
@@ -310,27 +265,14 @@ navigator.geolocation.getCurrentPosition(function (currentPosition) {
                     // click event for each result card
                     $('.restaurant').on('click', function (event) {
                         event.stopPropagation()
-                        console.log($(this).data("restaurantname"))
-                        $('.menu').remove()
+                        $('.menu').empty()
 
                         for (var i = 0; i < restArray.length; i++) {
 
                             if ($(this).data("restaurantname") === restArray[i].restaurant.name) {
-
-                                // gets error, not sure if its possible to do --> photos
-                                console.log(restArray[i].restaurant.photos_url)
-
-                                // var photos = restArray[i].restaurant.photos_url
-                                // var photosEl = $('<img>')
-                                // photosEl.attr('src', photos)
-                                // $(this).append(photosEl)
-
                                 // link to menu --> open in new tab 
-                                console.log(restArray[i].restaurant.menu_url)
                                 var menu = $('<a class="menu" href=' + restArray[i].restaurant.menu_url + ' target="_blank">Link to menu</a>')
-
                                 $(this).append(menu)
-
                             }
                         }
                     })
